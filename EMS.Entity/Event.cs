@@ -13,5 +13,8 @@ namespace EMS.Entity
         public string Description { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
+
+        public int LocationId { get; set; }
+        public virtual Location Location { get; set; }
     }
 }

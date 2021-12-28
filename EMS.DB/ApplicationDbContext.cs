@@ -10,12 +10,12 @@ namespace EMS.DB
             : base(options)
         {
         }
-
-
-        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
         }
+
+        public DbSet<Event> Events { get; set; }
+        public DbSet<Location> Locations { get; set; }
     }
 }
