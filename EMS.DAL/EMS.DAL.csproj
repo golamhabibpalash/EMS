@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EMS.DB\EMS.DB.csproj" />
+    <ProjectReference Include="..\EMS.Entity\EMS.Entity.csproj" />
+  </ItemGroup>
+
+</Project>
