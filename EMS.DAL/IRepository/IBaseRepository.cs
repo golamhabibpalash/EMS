@@ -8,9 +8,9 @@ namespace EMS.DAL.IRepository
 {
     public interface IBaseRepository<T> where T:class
     {
-        Task<bool> AddAsync(T entity);
         Task<T> GetByIdAsync(int id);
         Task<List<T>> GetAllAsync();
+        Task<bool> AddAsync(T entity);
         Task<bool> UpdateAsync(T entity);
         Task<bool> RemoveAsync(T entity);
     }
