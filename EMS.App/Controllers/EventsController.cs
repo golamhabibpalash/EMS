@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using EMS.App.ViewModel;
+using EMS.BLL.IService;
+using EMS.Entity;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,21 +12,23 @@ namespace EMS.App.Controllers
 {
     public class EventsController : Controller
     {
-        
-        public EventsController()
+        private readonly IEventService _eventService;
+        public EventsController(IEventService eventService)
         {
-
+            _eventService = eventService;
         }
+        
         // GET: EventsController
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            return View();
+            return View(await _eventService.GetAllAsync());
         }
 
         // GET: EventsController/Details/5
-        public ActionResult Details(int id)
+        public async Task<ActionResult> Details(int id)
         {
-            return View();
+            var existingEvent = await _eventService.GetByIdAsync(id);
+            return View(existingEvent);
         }
 
         // GET: EventsController/Create
@@ -35,46 +40,54 @@ namespace EMS.App.Controllers
         // POST: EventsController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<ActionResult> Create(Event model)
         {
-            try
+            if (ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Index));
+                var isAdded = await _eventService.AddAsync(model);
+                if (isAdded)
+                {
+                    return RedirectToAction("Index");
+                }
             }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: EventsController/Edit/5
-        public ActionResult Edit(int id)
-        {
             return View();
         }
 
-        // POST: EventsController/Edit/5
+        // GET: EventsController/Edit/5
+        public async Task<ActionResult> Edit(int id)
+        {
+            var existingEvent = await _eventService.GetByIdAsync(id);
+            if (existingEvent != null)
+            {
+                return View(existingEvent);
+            }
+            ViewBag.msg = "Not found";
+            return View();
+        }
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<ActionResult> Edit(int id, Event model)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
+            if (id != model.Id)
             {
                 return View();
             }
+            if (ModelState.IsValid)
+            {
+
+            }
+            return View();
         }
 
-        // GET: EventsController/Delete/5
+
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: EventsController/Delete/5
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
