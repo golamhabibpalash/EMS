@@ -76,7 +76,11 @@ namespace EMS.App.Controllers
             }
             if (ModelState.IsValid)
             {
-
+                var isUpdated = await _eventService.UpdateAsync(model);
+                if (isUpdated)
+                {
+                    return RedirectToAction("Index");
+                }
             }
             return View();
         }
