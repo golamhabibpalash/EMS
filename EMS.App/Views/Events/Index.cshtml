@@ -1,0 +1,56 @@
+﻿@model IEnumerable<EMS.Entity.Event>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>All Events</h1>
+
+<table class="table table-hover table-responsive-sm table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Location)
+            </th>
+            <th>
+                <partial name="~/Views/Shared/PartialView/_Create.cshtml" />
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location.Name)
+            </td>
+            <td>
+                <partial name="~/Views/Shared/PartialView/_Edit_Details_Delete.cshtml" model="item.Id" />
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
