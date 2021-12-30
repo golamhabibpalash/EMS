@@ -1,4 +1,6 @@
 ﻿using EMS.App.Models;
+using EMS.App.Utilities;
+using EMS.BLL.IService;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -11,15 +13,20 @@ namespace EMS.App.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        
 
-        public HomeController(ILogger<HomeController> logger)
+        private readonly ILogger<HomeController> _logger;
+        private readonly ILocationService _locationService;
+
+        public HomeController(ILogger<HomeController> logger, ILocationService locationService)
         {
             _logger = logger;
+            _locationService = locationService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            ViewData["Resources"] = JsonDataSerializer.GetLocationListAsString(await _locationService.GetAllAsync());
             return View();
         }
 

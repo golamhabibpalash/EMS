@@ -1,3 +1,7 @@
+using EMS.BLL.IService;
+using EMS.BLL.Service;
+using EMS.DAL.IRepository;
+using EMS.DAL.Repository;
 using EMS.DB;
 using EMS.Entity;
 using Microsoft.AspNetCore.Builder;
@@ -48,6 +52,12 @@ namespace EMS.App
             services.AddMvc();
             services.AddControllersWithViews();
             services.AddHealthChecks();
+
+            services.AddScoped<IEventService, EventService>();
+            services.AddScoped<IEventRepository, EventRepository>();
+
+            services.AddScoped<ILocationService, LocationService>();
+            services.AddScoped<ILocationRepository, LocationRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
