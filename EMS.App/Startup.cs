@@ -31,13 +31,6 @@ namespace EMS.App
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
             
-            //services.AddIdentity<ApplicationUser, IdentityRole>(options =>
-            //{
-            //    options.Password.RequiredLength = 3;
-            //    options.Password.RequireDigit = false;
-            //    options.Password.RequireLowercase = false;
-            //}).AddEntityFrameworkStores<ApplicationDbContext>
-            //().AddDefaultTokenProviders();
 
             services.AddIdentity<ApplicationUser, IdentityRole>(option =>
             {

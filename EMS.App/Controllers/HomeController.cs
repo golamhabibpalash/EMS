@@ -17,16 +17,19 @@ namespace EMS.App.Controllers
 
         private readonly ILogger<HomeController> _logger;
         private readonly ILocationService _locationService;
+        private readonly IEventService _eventService;
 
-        public HomeController(ILogger<HomeController> logger, ILocationService locationService)
+        public HomeController(ILogger<HomeController> logger, ILocationService locationService, IEventService eventService)
         {
             _logger = logger;
             _locationService = locationService;
+            _eventService = eventService;
         }
 
         public async Task<IActionResult> Index()
         {
             ViewData["Resources"] = JsonDataSerializer.GetLocationListAsString(await _locationService.GetAllAsync());
+            ViewData["Events"] = JsonDataSerializer.GetEventListAsString(await _eventService.GetAllAsync());
             return View();
         }
 

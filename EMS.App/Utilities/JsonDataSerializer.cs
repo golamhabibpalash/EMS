@@ -14,11 +14,11 @@ namespace EMS.App.Utilities
             {
                 var myEvent = new Event()
                 {
-                    Id = model.Id,
-                    Start = model.StartTime,
-                    End = model.EndTime,
-                    ResourceId = model.LocationId,
-                    Description = model.Description
+                    id = model.Id,
+                    start = model.StartTime,
+                    end = model.EndTime,
+                    resourceId = model.LocationId,
+                    description = model.Description
                 };
                 eventList.Add(myEvent);
             }
@@ -31,8 +31,8 @@ namespace EMS.App.Utilities
             {
                 var resource = new Resource()
                 {
-                    Id = myLocation.Id,
-                    Name = myLocation.Name
+                    id = myLocation.Id,
+                    title = myLocation.Name
                 };
                 resourceList.Add(resource);
             }
@@ -41,15 +41,15 @@ namespace EMS.App.Utilities
     }
     public class Event
     {
-        public int Id { get; set; }
-        public DateTime Start { get; set; }
-        public DateTime End { get; set; }
-        public int ResourceId { get; set; }
-        public string Description { get; set; }
+        public int id { get; set; }
+        public DateTime start { get; set; }
+        public DateTime end { get; set; }
+        public int resourceId { get; set; }
+        public string description { get; set; }
     }
     public class Resource
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
+        public int id { get; set; }
+        public string title { get; set; }
     }
 }
