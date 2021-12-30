@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Index";
+    int sl = 0;
 }
 
 <h1>All Events</h1>
@@ -9,6 +10,9 @@
 <table class="table table-hover table-responsive-sm table-striped">
     <thead>
         <tr>
+            <th>
+                #
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Title)
             </th>
@@ -32,6 +36,7 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
+            <td>@(++sl).</td>
             <td>
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
