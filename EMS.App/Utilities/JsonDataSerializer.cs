@@ -15,10 +15,12 @@ namespace EMS.App.Utilities
                 var myEvent = new Event()
                 {
                     id = model.Id,
+                    title = model.Title,
                     start = model.StartTime,
                     end = model.EndTime,
                     resourceId = model.LocationId,
-                    description = model.Description
+                    description = model.Description,
+                    url= "/Events/Details/"+model.Id
                 };
                 eventList.Add(myEvent);
             }
@@ -42,10 +44,12 @@ namespace EMS.App.Utilities
     public class Event
     {
         public int id { get; set; }
+        public string title { get; set; }
         public DateTime start { get; set; }
         public DateTime end { get; set; }
         public int resourceId { get; set; }
         public string description { get; set; }
+        public string url { get; set; }
     }
     public class Resource
     {
