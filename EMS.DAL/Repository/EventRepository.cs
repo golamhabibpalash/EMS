@@ -20,5 +20,10 @@ namespace EMS.DAL.Repository
         {
             return await _context.Events.Include(e => e.Location).ToListAsync();
         }
+
+        public override async Task<Event> GetByIdAsync(int id)
+        {
+            return await _context.Events.Include(e => e.Location).FirstOrDefaultAsync(e => e.Id == id);
+        }
     }
 }

@@ -4,10 +4,8 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
-
 <div>
-    <h4>Event</h4>
+    <h4>Event Details</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -38,11 +36,10 @@
             @Html.DisplayNameFor(model => model.Location)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Location.Id)
+            @Html.DisplayFor(model => model.Location.Name)
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <partial model="@Model.Id" name="~/Views/Shared/PartialView/_Edit_Back.cshtml" />
 </div>

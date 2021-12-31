@@ -65,6 +65,8 @@ namespace EMS.App.Controllers
             var existingEvent = await _eventService.GetByIdAsync(id);
             if (existingEvent != null)
             {
+
+                ViewBag.LocationList = new SelectList(await _locationService.GetAllAsync(), "Id", "Name", existingEvent.LocationId);
                 return View(existingEvent);
             }
             ViewBag.msg = "Not found";
@@ -88,7 +90,8 @@ namespace EMS.App.Controllers
                     return RedirectToAction("Index");
                 }
             }
-            return View();
+            ViewBag.LocationList = new SelectList(await _locationService.GetAllAsync(), "Id", "Name", model.LocationId);
+            return View(model);
         }
 
 

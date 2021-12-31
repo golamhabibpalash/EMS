@@ -43,9 +43,14 @@
             <div class="form-group row">
                 <label asp-for="LocationId" class="control-label col-form-label text-md-right col-md-2"></label>
                 <div class="col-md-10">
-                    <select asp-for="LocationId" class="form-control form-control-sm" asp-items="ViewBag.LocationList">
-                        <option selected disabled>Select Location</option>
-                    </select>
+                    <div class="input-group mb-3">
+                        <select asp-for="LocationId" class="form-control form-control-sm" asp-items="ViewBag.LocationList">
+                            <option selected disabled>Select Location</option>
+                        </select>
+                        <div class="input-group-append">
+                            <button class="btn btn-sm btn-success" type="button" data-toggle="modal" data-target="#exampleModal" >Add new location</button>
+                        </div>
+                    </div>                    
                     <span asp-validation-for="LocationId" class="text-danger"></span>
                 </div>
             </div>
@@ -56,6 +61,33 @@
 
             </div>
         </form>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add new location</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form asp-action="CreateFromModal" asp-controller="Locations" method="post">
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <label for="location" class="col-form-label col-md-3 text-md-right">Location:</label>
+                        <div class="col-md-9">
+                            <input name="name" required type="text" class="form-control" id="location">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 

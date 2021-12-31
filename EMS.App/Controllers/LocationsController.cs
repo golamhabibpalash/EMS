@@ -55,6 +55,23 @@ namespace EMS.App.Controllers
             return View(model);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> CreateFromModal(string name)
+        {
+            var Locations = await _locationService.GetAllAsync();
+            var existingLocation = Locations.FirstOrDefault(l => l.Name.ToLower() == name.ToLower());
+            if (existingLocation == null)
+            {
+                Location location = new Location()
+                {
+                    Name = name
+                };
+                await _locationService.AddAsync(location);
+            }
+            return RedirectToAction("Create","Events");
+        }
+
         // GET: LocationsController/Edit/5
         public async Task<ActionResult> Edit(int id)
         {

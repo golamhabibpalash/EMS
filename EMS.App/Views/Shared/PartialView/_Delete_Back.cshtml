@@ -1,0 +1,6 @@
+﻿@model int
+<form asp-action="Delete">
+    <input type="hidden" name="id" value="@Model" />
+    <input type="submit" value="Delete" class="btn btn-danger btn-sm" />
+    <a asp-action="Index" class="btn btn-sm btn-success">Back to List</a>
+</form>

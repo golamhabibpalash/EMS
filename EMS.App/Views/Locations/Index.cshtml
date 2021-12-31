@@ -2,31 +2,36 @@
 
 @{
     ViewData["Title"] = "Index";
+    int sl = 0;
 }
 
-<h1>All Locations</h1>
-
-<table class="table table-hover table-responsive-sm table-striped">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                <partial name="~/Views/Shared/PartialView/_Create.cshtml" />
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                <partial name="~/Views/Shared/PartialView/_Edit_Details_Delete.cshtml" model="item.Id" />
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<h3>All Locations</h3>
+<div class="shadow">
+    <table class="table table-hover table-responsive-sm table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    <partial name="~/Views/Shared/PartialView/_Create.cshtml" />
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@(++sl)</td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        <partial name="~/Views/Shared/PartialView/_Edit_Details_Delete.cshtml" model="item.Id" />
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
